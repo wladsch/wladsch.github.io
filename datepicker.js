@@ -64,10 +64,10 @@
     // The start view when initialized
     startView: 0,
     // 0 for days, 1 for months, 2 for years
+    weekStart: 1,
     // The start day of the week
     // 0 for Sunday, 1 for Monday, 2 for Tuesday, 3 for Wednesday,
     // 4 for Thursday, 5 for Friday, 6 for Saturday
-    weekStart: 1,
     // Show year before month on the datepicker header
     yearFirst: false,
     // A string suffix to the year number.
