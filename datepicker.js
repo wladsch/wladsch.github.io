@@ -100,9 +100,9 @@
     zIndex: 1000,
     // Filter each date item (return `false` to disable a date item)
     filter: function(date) {
-        if (date.getDay() == 6) {
+        if (date.getDay() == 5) {
           return false; // Enable Tuesdays only
-        } else if (date.getDay() == 7) {
+        } else if (date.getDay() == 6) {
           return false; // Enable Tuesdays only
         }
     },
