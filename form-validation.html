@@ -1,0 +1,327 @@
+<!-- START FIX: Always show the first tab first -->
+<script>
+  $(".tab-link").removeClass("w--current");
+  $(".tab-pane").removeClass("w--tab-active");
+
+  $(".tab-link:nth-child(0)").addClass("w--current");
+  $(".tab-pane:nth-child(0)").addClass("w--tab-active");
+</script>
+<!-- END FIX: Always show the first tab first -->
+<script>
+var abfallmengeSet = false
+var ContContainerVarianteSevenKubikShow = false
+var ContContainerVarianteSevenKubikSet = false
+var ContContainerVarianteTenKubikShow = false
+var ContContainerVarianteTenKubikSet = false
+
+$(document).ready(function(){
+    $("#Abfallmenge").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+                        //validation for changed value
+            if(optionValue != ""){
+            abfallmengeSet = true
+            }
+            else{abfallmengeSet = false}
+            if(optionValue == "7 m³"){
+                //$(".box").not("." + optionValue).hide();
+                $("#Container-Variante-7kubik").show();
+                ContContainerVarianteSevenKubikShow = true
+            } else{
+                $("#Container-Variante-7kubik").hide();
+								ContContainerVarianteSevenKubikShow = false
+
+            }
+            if(optionValue == "10 m³"){
+                //$(".box").not("." + optionValue).hide();
+                $("#Container-Variante-10kubik").show();
+                ContContainerVarianteSevenKubikShow = true
+            } else{
+                $("#Container-Variante-10kubik").hide();
+                ContContainerVarianteSevenKubikShow = false
+            }
+        });
+    }).change();
+});
+
+$(document).ready(function(){
+    $("#Container-Variante-7kubik").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            //validation for changed value
+            if(optionValue != ""){
+            ContContainerVarianteSevenKubikSet = true
+            }
+            else{ContContainerVarianteSevenKubikSet = false}
+        });
+    }).change();
+});
+$(document).ready(function(){
+    $("#Container-Variante-10kubik").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            //validation for changed value
+            if(optionValue != ""){
+            ContContainerVarianteTenKubikSet = true
+            }
+            else{ContContainerVarianteTenKubikSet = false}
+        });
+    }).change();
+});
+</script>
+
+<script>
+var abfallArtSet = false
+$(document).ready(function(){
+    $("#Abfallart").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            //validation for changed value
+            if(optionValue != ""){
+            abfallArtSet = true
+            }
+            else{abfallArtSet = false}
+            if(optionValue == "andere Abfälle"){
+                //$(".box").not("." + optionValue).hide();
+                $("." + "weitere-abfaelle").show();
+            } else{
+                $(".weitere-abfaelle").hide();
+            }
+        });
+    }).change();
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    $("#Abstellflaeche").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue == "Öffentliche Fläche (Bürgersteig, öffentlicher Parkplatz, ...)"){
+                //$(".box").not("." + optionValue).hide();
+                $("." + "sondernutzungserlaubnis-holder").show();
+            } else{
+                $(".sondernutzungserlaubnis-holder").hide();
+            }
+        });
+    }).change();
+});
+</script>
+
+<script>
+   
+    $(document).ready(function () {
+        $('[data-toggle="datepicker"]').datepicker({
+            format: 'dd. mm. yyyy'
+        });
+        // Available date placeholders:
+        // Year: yyyy
+        // Month: mm
+        // Day: dd
+        if (window.innerWidth < 768) {
+            $('[data-toggle="datepicker"]').attr('readonly', 'readonly')
+        }
+    });
+
+</script>
+
+<!-- You can put your custom CSS attributes -->
+<style>
+    /* You can apply your own color! 
+    --main-light-color is the light grey, 
+    --main-dark-color is the text
+    --main-active-color is the highlight
+    you can just add like red, or blue or any helx you like! */
+    :root {
+        --main-light-color: #d6e0d3;
+        --main-dark-color: #3a9b1a;
+        --main-active-color: #3a9b1a;
+    }
+
+    .datepicker-dropdown {
+        border-radius: 8px !important;
+        border: 0 !important;
+        -webkit-box-shadow: 0px 48px 88px rgba(9, 54, 24, 0.08);
+        box-shadow: 0px 48px 88px rgba(9, 54, 24, 0.08);
+        box-sizing: border-box;
+    }
+
+    .datepicker-panel>ul[data-view="week"]>li {
+        background-color: var(--main-light-color);
+        color: var(--main-dark-color);
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 0;
+        height: initial;
+        padding-top: 3px;
+        margin-bottom: 4px;
+    }
+
+    .datepicker-panel>ul[data-view="week"]>li:hover {
+        background-color: var(--main-light-color);
+        color: var(--main-dark-color);
+        border-radius: 0px;
+    }
+
+    .datepicker-panel>ul[data-view="week"] li:first-child {
+        border-radius: 20px 0 0 20px;
+    }
+
+    .datepicker-panel>ul[data-view="week"] li:last-child {
+        border-radius: 0 20px 20px 0;
+    }
+
+    .datepicker-top-left::before,
+    .datepicker-top-left::after {
+        display: none;
+    }
+
+    .datepicker-panel>ul>li.picked,
+    .datepicker-panel>ul>li.highlighted,
+    .datepicker-panel>ul>li.picked:hover {
+        color: var(--main-active-color);
+        background: var(--main-light-color);
+        border-radius: 8px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    li[data-view="month current"],
+    li[data-view="year current"] {
+        text-align: left;
+        color: var(--main-dark-color);
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        /* line-height: 24px; */
+        padding-left: 15px;
+        border-radius: 10px;
+    }
+
+    .datepicker-panel>ul>li:hover {
+        background: var(--main-light-color);
+        border-radius: 10px;
+    }
+
+    li[data-view="month current"],
+    li[data-view="year current"],
+    li[data-view="years current"] {
+        margin-bottom: 4px !important;
+    }
+
+    @media screen and (min-width: 768px) {
+        .datepicker-dropdown {
+            width: 364px;
+            padding: 12px;
+        }
+
+        .datepicker-panel>ul>li {
+            width: 48px;
+            height: 48px;
+            padding-top: 10px;
+        }
+
+        li[data-view="month next"],
+        li[data-view="year next"],
+        li[data-view="years next"] {
+            position: absolute;
+            right: 18px
+        }
+
+        li[data-view="month prev"],
+        li[data-view="year prev"],
+        li[data-view="years prev"] {
+            position: absolute;
+            right: 66px
+        }
+
+        ul[data-view="months"] li,
+        ul[data-view="years"] li {
+            padding-top: 0px;
+            width: 57px !important;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .datepicker-panel {
+            transform: scale(0.97);
+        }
+    }
+</style>
+
+
+<script>
+  $('.button-link-to-tab-1').on('click', function (evt) {
+     console.log("Button Test");
+    $('.target-tab-link-1').triggerHandler('click');
+    evt.preventDefault();
+  });
+</script>
+
+<script>
+//button-link-to-tab-2
+var requiredDone = false;
+  $('.button-link-to-tab-2').on('click', function (evt) {
+     console.log("Button Test");
+     if(abfallArtSet && abfallmengeSet && ContContainerVarianteSevenKubikSet && ContContainerVarianteTenKubikSet){
+		  $('.target-tab-link-2').triggerHandler('click');
+    	evt.preventDefault();
+     }
+  });
+</script>
+<script>
+  $('.button-link-to-tab-3').on('click', function (evt) {
+     console.log("Button Test");
+    $('.target-tab-link-3').triggerHandler('click');
+    evt.preventDefault();
+  });
+</script>
+<script>
+  $('.button-link-to-tab-4').on('click', function (evt) {
+     console.log("Button Test");
+    $('.target-tab-link-4').triggerHandler('click');
+    evt.preventDefault();
+  });
+</script>
+
+
+<script>
+    $(document).ready(function(){
+        $("#Rechnungsadresse-Privat-oder-Gewerblich").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue == "Privat"){
+                    //$(".box").not("." + optionValue).hide();
+                    $("#Rechnungsadresse-Privat").show();
+                    $("#Rechnungsadresse-Gewerblich").hide();
+                    $("#kontaktdaten-container").show();
+                } else if (optionValue == "Gewerblich") {
+                    $("#Rechnungsadresse-Gewerblich").show();
+                    $("#Rechnungsadresse-Privat").hide();
+                    $("#kontaktdaten-container").show();
+                } else {
+                    $("#Rechnungsadresse-Gewerblich").hide();
+                    $("#Rechnungsadresse-Privat").hide();
+                    $("#kontaktdaten-container").hide();
+                }
+            });
+        }).change();
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $("#Lieferadresse-Wahl").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue == "anderen Abstellort wählen"){
+                    //$(".box").not("." + optionValue).hide();
+                    $("#Anderen-Abstellort").show();
+                } else{
+                    $("#Anderen-Abstellort").hide();
+                }
+            });
+        }).change();
+    });
+</script>
