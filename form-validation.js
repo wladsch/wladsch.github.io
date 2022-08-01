@@ -35,7 +35,7 @@ $(document).ready(function(){
                 ContContainerVarianteSevenKubikShow = true
             } else{
                 $("#Container-Variante-7kubik").hide();
-								ContContainerVarianteSevenKubikShow = false
+		ContContainerVarianteSevenKubikShow = false
 
             }
             if(optionValue == "10 m³"){
@@ -130,7 +130,7 @@ $(document).ready(function(){
 var requiredDone = false;
   $('.button-link-to-tab-2').on('click', function (evt) {
      console.log("Button Test");
-     if(abfallArtSet && abfallmengeSet && ContContainerVarianteSevenKubikSet && ContContainerVarianteTenKubikSet){
+     if(abfallArtSet && abfallmengeSet && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet)){
 		  $('.target-tab-link-2').triggerHandler('click');
     	evt.preventDefault();
      }
