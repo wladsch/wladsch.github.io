@@ -1,1 +1,190 @@
 
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
+
+<!-- START FIX: Always show the first tab first -->
+
+	
+	
+	
+  $(".tab-link").removeClass("w--current");
+  $(".tab-pane").removeClass("w--tab-active");
+
+  $(".tab-link:nth-child(0)").addClass("w--current");
+  $(".tab-pane:nth-child(0)").addClass("w--tab-active");
+
+<!-- END FIX: Always show the first tab first -->
+
+var abfallmengeSet = false
+var ContContainerVarianteSevenKubikShow = false
+var ContContainerVarianteSevenKubikSet = false
+var ContContainerVarianteTenKubikShow = false
+var ContContainerVarianteTenKubikSet = false
+
+$(document).ready(function(){
+    $("#Abfallmenge").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+                        //validation for changed value
+            if(optionValue != ""){
+            abfallmengeSet = true
+            }
+            else{abfallmengeSet = false}
+            if(optionValue == "7 m³"){
+                //$(".box").not("." + optionValue).hide();
+                $("#Container-Variante-7kubik").show();
+                ContContainerVarianteSevenKubikShow = true
+            } else{
+                $("#Container-Variante-7kubik").hide();
+								ContContainerVarianteSevenKubikShow = false
+
+            }
+            if(optionValue == "10 m³"){
+                //$(".box").not("." + optionValue).hide();
+                $("#Container-Variante-10kubik").show();
+                ContContainerVarianteSevenKubikShow = true
+            } else{
+                $("#Container-Variante-10kubik").hide();
+                ContContainerVarianteSevenKubikShow = false
+            }
+        });
+    }).change();
+});
+
+$(document).ready(function(){
+    $("#Container-Variante-7kubik").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            //validation for changed value
+            if(optionValue != ""){
+            ContContainerVarianteSevenKubikSet = true
+            }
+            else{ContContainerVarianteSevenKubikSet = false}
+        });
+    }).change();
+});
+$(document).ready(function(){
+    $("#Container-Variante-10kubik").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            //validation for changed value
+            if(optionValue != ""){
+            ContContainerVarianteTenKubikSet = true
+            }
+            else{ContContainerVarianteTenKubikSet = false}
+        });
+    }).change();
+});
+
+
+
+var abfallArtSet = false
+$(document).ready(function(){
+    $("#Abfallart").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            //validation for changed value
+            if(optionValue != ""){
+            abfallArtSet = true
+            }
+            else{abfallArtSet = false}
+            if(optionValue == "andere Abfälle"){
+                //$(".box").not("." + optionValue).hide();
+                $("." + "weitere-abfaelle").show();
+            } else{
+                $(".weitere-abfaelle").hide();
+            }
+        });
+    }).change();
+});
+
+
+
+$(document).ready(function(){
+    $("#Abstellflaeche").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue == "Öffentliche Fläche (Bürgersteig, öffentlicher Parkplatz, ...)"){
+                //$(".box").not("." + optionValue).hide();
+                $("." + "sondernutzungserlaubnis-holder").show();
+            } else{
+                $(".sondernutzungserlaubnis-holder").hide();
+            }
+        });
+    }).change();
+});
+
+
+
+
+
+
+  $('.button-link-to-tab-1').on('click', function (evt) {
+     console.log("Button Test");
+    $('.target-tab-link-1').triggerHandler('click');
+    evt.preventDefault();
+  });
+
+
+
+//button-link-to-tab-2
+var requiredDone = false;
+  $('.button-link-to-tab-2').on('click', function (evt) {
+     console.log("Button Test");
+     if(abfallArtSet && abfallmengeSet && ContContainerVarianteSevenKubikSet && ContContainerVarianteTenKubikSet){
+		  $('.target-tab-link-2').triggerHandler('click');
+    	evt.preventDefault();
+     }
+  });
+
+  $('.button-link-to-tab-3').on('click', function (evt) {
+     console.log("Button Test");
+    $('.target-tab-link-3').triggerHandler('click');
+    evt.preventDefault();
+  });
+
+  $('.button-link-to-tab-4').on('click', function (evt) {
+     console.log("Button Test");
+    $('.target-tab-link-4').triggerHandler('click');
+    evt.preventDefault();
+  });
+
+
+
+
+    $(document).ready(function(){
+        $("#Rechnungsadresse-Privat-oder-Gewerblich").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue == "Privat"){
+                    //$(".box").not("." + optionValue).hide();
+                    $("#Rechnungsadresse-Privat").show();
+                    $("#Rechnungsadresse-Gewerblich").hide();
+                    $("#kontaktdaten-container").show();
+                } else if (optionValue == "Gewerblich") {
+                    $("#Rechnungsadresse-Gewerblich").show();
+                    $("#Rechnungsadresse-Privat").hide();
+                    $("#kontaktdaten-container").show();
+                } else {
+                    $("#Rechnungsadresse-Gewerblich").hide();
+                    $("#Rechnungsadresse-Privat").hide();
+                    $("#kontaktdaten-container").hide();
+                }
+            });
+        }).change();
+    });
+
+
+
+    $(document).ready(function(){
+        $("#Lieferadresse-Wahl").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue == "anderen Abstellort wählen"){
+                    //$(".box").not("." + optionValue).hide();
+                    $("#Anderen-Abstellort").show();
+                } else{
+                    $("#Anderen-Abstellort").hide();
+                }
+            });
+        }).change();
+    });
