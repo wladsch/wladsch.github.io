@@ -1,5 +1,15 @@
 <!-- START FIX: Always show the first tab first -->
 <script>
+	(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('jquery')) :
+  typeof define === 'function' && define.amd ? define(['jquery'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.jQuery));
+}(this, (function ($) { 'use strict';
+
+  $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
+	
+	
+	
   $(".tab-link").removeClass("w--current");
   $(".tab-pane").removeClass("w--tab-active");
 
