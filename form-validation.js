@@ -29,6 +29,7 @@ $(document).ready(function(){
             }
             else{
                 abfallArtSet = false
+                console.log("Abfallart nicht ausgewählt")
                 $("#Abfallart-error").show();
             }
             if(optionValue == "andere Abfälle"){
