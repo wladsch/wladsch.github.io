@@ -13,6 +13,50 @@ var ContContainerVarianteSevenKubikSet = false
 var ContContainerVarianteTenKubikShow = false
 var ContContainerVarianteTenKubikSet = false
 
+
+
+
+
+var abfallArtSet = false
+$(document).ready(function(){
+    $("#Abfallart").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            //validation for changed value
+            if(optionValue != ""){
+            abfallArtSet = true
+            $("#Abfallart-error").hide();
+            }
+            else{
+                abfallArtSet = false
+                $("#Abfallart-error").show();
+            }
+            if(optionValue == "andere Abfälle"){
+                //$(".box").not("." + optionValue).hide();
+                $("." + "weitere-abfaelle").show();
+            } else{
+                $(".weitere-abfaelle").hide();
+            }
+        });
+    }).change();
+});
+
+
+
+
+$(document).ready(function(){
+    $(".weitere-abfaelle").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue != ""){
+                $("#Andere-Art-von-Abfall-error").hide();
+            } else{
+                $("#Andere-Art-von-Abfall-error").show();
+            }
+        });
+    }).change();
+});
+
 $(document).ready(function(){
     $("#Abfallmenge").change(function(){
         $(this).find("option:selected").each(function(){
@@ -20,8 +64,12 @@ $(document).ready(function(){
                         //validation for changed value
             if(optionValue != ""){
             abfallmengeSet = true
+            $("#Abfallmenge-error").hide();
             }
-            else{abfallmengeSet = false}
+            else{
+                abfallmengeSet = false
+                $("#Abfallmenge-error").show();
+            }
             if(optionValue == "7 m³"){
                 //$(".box").not("." + optionValue).hide();
                 $("#Container-Variante-7kubik").show();
@@ -50,8 +98,12 @@ $(document).ready(function(){
             //validation for changed value
             if(optionValue != ""){
             ContContainerVarianteSevenKubikSet = true
+            $("#Container-Variante-7kubik-error").hide();
             }
-            else{ContContainerVarianteSevenKubikSet = false}
+            else{
+                ContContainerVarianteSevenKubikSet = false
+                $("#Container-Variante-7kubik-error").show();
+            }
         });
     }).change();
 });
@@ -62,33 +114,17 @@ $(document).ready(function(){
             //validation for changed value
             if(optionValue != ""){
             ContContainerVarianteTenKubikSet = true
+            $("#Container-Variante-10kubik-error").hide();
             }
-            else{ContContainerVarianteTenKubikSet = false}
-        });
-    }).change();
-});
-
-
-
-var abfallArtSet = false
-$(document).ready(function(){
-    $("#Abfallart").change(function(){
-        $(this).find("option:selected").each(function(){
-            var optionValue = $(this).attr("value");
-            //validation for changed value
-            if(optionValue != ""){
-            abfallArtSet = true
-            }
-            else{abfallArtSet = false}
-            if(optionValue == "andere Abfälle"){
-                //$(".box").not("." + optionValue).hide();
-                $("." + "weitere-abfaelle").show();
-            } else{
-                $(".weitere-abfaelle").hide();
+            else{
+                ContContainerVarianteTenKubikSet = false
+                $("#Container-Variante-10kubik-error").show();
             }
         });
     }).change();
 });
+
+
 
 
 
@@ -129,7 +165,11 @@ var requiredDone = false;
      console.log(ContContainerVarianteTenKubikSet)
      if(abfallArtSet && abfallmengeSet && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet)){
         $('.target-tab-link-2').triggerHandler('click');
+        $("#alle-pflichtfelder-ausfuellen-error").hide();
      }
+     else {
+        $("#alle-pflichtfelder-ausfuellen-error").show();
+    }
   });
 
   $('.button-link-to-tab-3').on('click', function (evt) {
