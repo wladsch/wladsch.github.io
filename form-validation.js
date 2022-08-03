@@ -362,10 +362,6 @@ if( $(this).val().length === 0) {
     emailWrongFormat = false
 }
 else {
-    console.log("mail")
-    console.log($(this).val())
-    console.log(isEmail($(this).val()))
-    console.log("mail2")
 
     if(isEmail($(this).val())){
         emailSet = true
@@ -414,10 +410,12 @@ $('.button-link-to-tab-4').on('click', function (evt) {
     else {
         if(!emailWrongFormat){
             //show email error
+            console.log("!emailWrongFormat")
             $("#alle-pflichtfelder-ausfuellen-error-3").hide();
             $("#email-falsches-format-error").show();
         }
         else{
+            console.log("emailWrongFormat")
             $("#alle-pflichtfelder-ausfuellen-error-3").show();
             $("#email-falsches-format-error").hide();
         }
