@@ -408,7 +408,7 @@ $('.button-link-to-tab-4').on('click', function (evt) {
         evt.preventDefault();
     }
     else {
-        if(!emailWrongFormat){
+        if(emailWrongFormat){
             //show email error
             console.log("!emailWrongFormat")
             $("#alle-pflichtfelder-ausfuellen-error-3").hide();
