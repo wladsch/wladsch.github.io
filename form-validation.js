@@ -25,6 +25,8 @@ var abholdatumSet = false
 
 
 var abstellflaecheSet = false
+var abstellflaechePrivat = false
+var abstellflaecheGewerblich = false
 var sondernutzungserlaubnisSet = false
 var zufahrt75tSet = false
 var privatogewerblichSet = false
@@ -162,10 +164,16 @@ $(document).ready(function(){
     $("#Abstellflaeche").change(function(){
         $(this).find("option:selected").each(function(){
             var optionValue = $(this).attr("value");
-            if(optionValue == "Öffentliche Fläche (Bürgersteig, öffentlicher Parkplatz, ...)"){
+            if(optionValue != ""){
                 //$(".box").not("." + optionValue).hide();
-                $("." + "sondernutzungserlaubnis-holder").show();
                 abstellflaecheSet = true
+                if(optionValue == "Private Fläche"){
+                    abstellflaechePrivat = true
+                    $(".sondernutzungserlaubnis-holder").hide();
+                }
+                if(optionValue == "Öffentliche Fläche (Bürgersteig, öffentlicher Parkplatz, ...)")
+                $("." + "sondernutzungserlaubnis-holder").show();
+                abstellflaecheGewerblich = true
             } else{
                 $(".sondernutzungserlaubnis-holder").hide();
                 abstellflaecheSet = false
@@ -395,16 +403,16 @@ $('.button-link-to-tab-4').on('click', function (evt) {
     console.log(zufahrt75tSet)
     console.log(emailWrongFormat)
     
-    if(emailSet && telefonSet && abstellortSet && privatogewerblichSet && abstellflaecheSet && sondernutzungserlaubnisSet && zufahrt75tSet){
+    if(emailSet && telefonSet && abstellortSet && privatogewerblichSet && (abstellflaecheSet && abstellflaechePrivat || abstellflaecheSet && abstellflaecheGewerblich && sondernutzungserlaubnisSet) && zufahrt75tSet){
         $('.target-tab-link-4').triggerHandler('click');
-        $("#alle-pflichtfelder-ausfuellen-error").hide();
+        $("#alle-pflichtfelder-ausfuellen-error-3").hide();
         $("#email-falsches-format-error").hide();
         evt.preventDefault();
     }
     else {
-        if(emailWrongFormat){
+        if(!emailWrongFormat){
             //show email error
-            $("#alle-pflichtfelder-ausfuellen-error").hide();
+            $("#alle-pflichtfelder-ausfuellen-error-3").hide();
             $("#email-falsches-format-error").show();
         }
         else{
