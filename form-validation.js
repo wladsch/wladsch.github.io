@@ -18,6 +18,7 @@ var ContContainerVarianteTenKubikSet = false
 
 
 var abfallArtSet = false
+var andereabfaelle = false
 $(document).ready(function(){
     $("#Abfallart").change(function(){
         $(this).find("option:selected").each(function(){
@@ -35,28 +36,29 @@ $(document).ready(function(){
             if(optionValue == "andere Abfälle"){
                 //$(".box").not("." + optionValue).hide();
                 $("." + "weitere-abfaelle").show();
+                andereabfaelle = true
             } else{
                 $(".weitere-abfaelle").hide();
-            }
-        });
-    }).change();
-});
-
-
-
-
-$(document).ready(function(){
-    $(".weitere-abfaelle").change(function(){
-        $(this).find("option:selected").each(function(){
-            var optionValue = $(this).attr("value");
-            if(optionValue != ""){
+                andereabfaelle = false
                 $("#Andere-Art-von-Abfall-error").hide();
-            } else{
-                $("#Andere-Art-von-Abfall-error").show();
             }
         });
     }).change();
 });
+
+
+
+$("#Andere-Art-von-Abfall").on("input", function()
+{
+if( $(this).val().length === 0 && andereabfaelle) {
+   $("#Andere-Art-von-Abfall-error").show(); //add disable next page button
+}
+else {
+    $("#Andere-Art-von-Abfall-error").hide(); //add disable next page button
+
+}
+});
+
 
 $(document).ready(function(){
     $("#Abfallmenge").change(function(){
@@ -75,6 +77,7 @@ $(document).ready(function(){
                 //$(".box").not("." + optionValue).hide();
                 $("#Container-Variante-7kubik").show();
                 ContContainerVarianteSevenKubikShow = true
+                $("#Container-Variante-10kubik").hide();
             } else{
                 $("#Container-Variante-7kubik").hide();
 		ContContainerVarianteSevenKubikShow = false
@@ -84,6 +87,7 @@ $(document).ready(function(){
                 //$(".box").not("." + optionValue).hide();
                 $("#Container-Variante-10kubik").show();
                 ContContainerVarianteSevenKubikShow = true
+                $("#Container-Variante-7kubik-error").hide();
             } else{
                 $("#Container-Variante-10kubik").hide();
                 ContContainerVarianteSevenKubikShow = false
