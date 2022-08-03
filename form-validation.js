@@ -12,6 +12,9 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
     return EmailRegex.test(email);
   }
 
+var abfallArtSet = false
+var andereabfaelle = false
+var andereAbfaelleSet = false
 var abfallmengeSet = false
 var ContContainerVarianteSevenKubikShow = false
 var ContContainerVarianteSevenKubikSet = false
@@ -37,8 +40,6 @@ var abstellortSet = false
 
 
 
-var abfallArtSet = false
-var andereabfaelle = false
 $(document).ready(function(){
     $("#Abfallart").change(function(){
         $(this).find("option:selected").each(function(){
@@ -71,12 +72,11 @@ $(document).ready(function(){
 
 $("#Andere-Art-von-Abfall").on("input", function()
 {
-if( $(this).val().length === 0 && andereabfaelle) {
-   //$("#Andere-Art-von-Abfall-error").show(); //add disable next page button
+if($(this).val().length === 0 && andereabfaelle){
+    andereAbfaelleSet = false
 }
-else {
-    //$("#Andere-Art-von-Abfall-error").hide(); //add disable next page button
-
+else{
+    andereAbfaelleSet = true
 }
 });
 
@@ -204,7 +204,7 @@ var requiredDone = false;
      console.log(abfallmengeSet)
      console.log(ContContainerVarianteSevenKubikSet)
      console.log(ContContainerVarianteTenKubikSet)
-     if(abfallArtSet && abfallmengeSet && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet || ContainerNoVariantNeeded)){
+     if(abfallArtSet && abfallmengeSet && (!andereabfaelle || andereabfaelle && andereAbfaelleSet) && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet || ContainerNoVariantNeeded)){
         $('.target-tab-link-2').triggerHandler('click');
         $("#alle-pflichtfelder-ausfuellen-error").hide();
      }
