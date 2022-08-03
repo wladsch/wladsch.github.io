@@ -23,6 +23,7 @@ $(document).ready(function(){
     $("#Abfallart").change(function(){
         $(this).find("option:selected").each(function(){
             var optionValue = $(this).attr("value");
+            console.log("I am live")
             //validation for changed value
             if(optionValue != ""){
             abfallArtSet = true
