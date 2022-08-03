@@ -40,7 +40,7 @@ $(document).ready(function(){
     $("#Abfallart").change(function(){
         $(this).find("option:selected").each(function(){
             var optionValue = $(this).attr("value");
-            console.log("I am 3x alive")
+            console.log("I am 4x alive")
             //validation for changed value
             if(optionValue != ""){
             abfallArtSet = true
@@ -346,6 +346,11 @@ if( $(this).val().length === 0) {
     emailWrongFormat = false
 }
 else {
+    console.log("mail")
+    console.log($(this).val())
+    console.log(isEmail($(this).val()))
+    console.log("mail2")
+
     if(isEmail($(this).val())){
         emailSet = true
     }
