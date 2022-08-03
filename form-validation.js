@@ -1,18 +1,11 @@
-
 src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
 
-<!-- START FIX: Always show the first tab first -->
-
-	
-	
-	
   $(".tab-link").removeClass("w--current");
   $(".tab-pane").removeClass("w--tab-active");
 
   $(".tab-link:nth-child(0)").addClass("w--current");
   $(".tab-pane:nth-child(0)").addClass("w--tab-active");
 
-<!-- END FIX: Always show the first tab first -->
 
 var abfallmengeSet = false
 var ContContainerVarianteSevenKubikShow = false
@@ -131,7 +124,7 @@ var requiredDone = false;
   $('.button-link-to-tab-2').on('click', function (evt) {
      console.log("Button Test");
      if(abfallArtSet && abfallmengeSet && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet)){
-		  $('.target-tab-link-2').triggerHandler('click');
+        console.log("button not ready")  
     	evt.preventDefault();
      }
   });
@@ -188,3 +181,57 @@ var requiredDone = false;
             });
         }).change();
     });
+
+
+    var lieferdatumPicked = ""
+    var todayDate = new Date().toISOString().slice(0, 10);
+    var lieferdatumSet = false
+    var abholdatumSet = false
+    todayDate = todayDate.slice(0,4)+todayDate.slice(5,7)+todayDate.slice(8)
+
+    $("#Lieferdatum").on("input", function() {
+        if( $(this).val().length === 0 ) {
+            $("#div-lieferdatum-vergangenheit").hide();
+            lieferdatumPicked = ""
+            lieferdatumSet = false
+         }
+         else {
+             $("#FL-Abholdatum").show();
+             lieferdatumPicked = $(this).val()
+             if(lieferdatumPicked.slice(8)+lieferdatumPicked.slice(4,6)+lieferdatumPicked.slice(0,2) < todayDate){
+                $("#div-lieferdatum-vergangenheit").show();
+                lieferdatumSet = false
+             }
+             else {
+                $("#div-lieferdatum-vergangenheit").hide();
+                lieferdatumSet = true
+             }
+         }
+     });
+
+
+     $("#Abholdatum").on("input", function()
+        {
+        if( $(this).val().length === 0 ) {
+           $("#div-abholdatum-vor-lieferdarum").hide(); //add disable next page button
+           abholdatumSet = false
+        }
+        else {
+            if(lieferdatumPicked.slice(8)+lieferdatumPicked.slice(4,6)+lieferdatumPicked.slice(0,2) > $(this).val().slice(8)+$(this).val().slice(4,6)+$(this).val().slice(0,2)){
+                $("#div-abholdatum-vor-lieferdarum").show();
+                abholdatumSet = false
+            }
+            else {
+               $("#div-abholdatum-vor-lieferdarum").hide();
+               abholdatumSet = true
+            }
+
+        }
+    });
+
+    $('.button-link-to-tab-3').on('click', function (evt) {
+        if(!(lieferdatumSet && abholdatumSet)){
+           console.log("button not ready")  
+           evt.preventDefault();
+        }
+     });
