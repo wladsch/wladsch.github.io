@@ -7,6 +7,11 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
   $(".tab-pane:nth-child(0)").addClass("w--tab-active");
 
 
+  function isEmail(email) {
+    var EmailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return EmailRegex.test(email);
+  }
+
 var abfallmengeSet = false
 var ContContainerVarianteSevenKubikShow = false
 var ContContainerVarianteSevenKubikSet = false
@@ -16,6 +21,17 @@ var ContContainerVarianteTenKubikSet = false
 
 var lieferdatumSet = false
 var abholdatumSet = false
+
+
+var abstellflaecheSet = false
+var sondernutzungserlaubnisSet = false
+var zufahrt75tSet = false
+var privatogewerblichSet = false
+var telefonSet = false
+var emailSet = false
+var emailWrongFormat = false
+var abstellortSet = false
+
 
 
 var abfallArtSet = false
@@ -142,8 +158,10 @@ $(document).ready(function(){
             if(optionValue == "Öffentliche Fläche (Bürgersteig, öffentlicher Parkplatz, ...)"){
                 //$(".box").not("." + optionValue).hide();
                 $("." + "sondernutzungserlaubnis-holder").show();
+                abstellflaecheSet = true
             } else{
                 $(".sondernutzungserlaubnis-holder").hide();
+                abstellflaecheSet = false
             }
         });
     }).change();
@@ -187,12 +205,9 @@ var requiredDone = false;
         $('.target-tab-link-3').triggerHandler('click');
         evt.preventDefault();
      }
-  });
-
-  $('.button-link-to-tab-4').on('click', function (evt) {
-     console.log("Button Test");
-    $('.target-tab-link-4').triggerHandler('click');
-    evt.preventDefault();
+     else {
+        $("#alle-pflichtfelder-ausfuellen-error-2").show();
+    }
   });
 
 
@@ -280,3 +295,100 @@ var requiredDone = false;
 
         }
     });
+
+
+
+
+    $(document).ready(function(){
+        $("#Rechnungsadresse-Privat-oder-Gewerblich").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue != ""){
+                    privatogewerblichSet = true
+                //$("#Container-Variante-7kubik-error").hide();
+                }
+                else{
+                    privatogewerblichSet = false
+                    //$("#Container-Variante-7kubik-error").show();
+                }
+            });
+        }).change();
+    });
+    $(document).ready(function(){
+        $("#Lieferadresse-Wahl").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue != ""){
+                    abstellortSet = true
+                }
+                else{
+                    abstellortSet = false
+                }
+            });
+        }).change();
+    });
+
+    $("#Telefon-Kontakt").on("input", function()
+{
+if( $(this).val().length === 0) {
+    telefonSet = false
+}
+else {
+    telefonSet = true
+}
+});
+
+
+$("#email-Kontakt").on("input", function()
+{
+if( $(this).val().length === 0) {
+    emailSet = false
+    emailWrongFormat = false
+}
+else {
+    if(isEmail($(this).val())){
+        emailSet = true
+    }
+    else{
+        emailWrongFormat = true
+        emailSet = false
+    }
+}
+});
+
+$("#Sondernutzungserlaubnis-check").change(function() {
+    if(this.checked) {
+        sondernutzungserlaubnisSet = true
+    }else{
+        sondernutzungserlaubnisSet = false
+    }
+});
+
+$("#75t-erlaubt").change(function() {
+    if(this.checked) {
+        zufahrt75tSet = true
+    }else{
+        zufahrt75tSet = false
+    }
+});
+
+$('.button-link-to-tab-4').on('click', function (evt) {
+    if(emailSet && telefonSet && abstellortSet && privatogewerblichSet && abstellflaecheSet && sondernutzungserlaubnisSet && zufahrt75tSet){
+        $('.target-tab-link-4').triggerHandler('click');
+        $("#alle-pflichtfelder-ausfuellen-error").hide();
+        $("#email-falsches-format-error").hide();
+        evt.preventDefault();
+    }
+    else {
+        if(emailWrongFormat){
+            //show email error
+            $("#alle-pflichtfelder-ausfuellen-error").hide();
+            $("#email-falsches-format-error").show();
+        }
+        else{
+            $("#alle-pflichtfelder-ausfuellen-error-3").show();
+            $("#email-falsches-format-error").hide();
+        }
+    }
+
+ });
