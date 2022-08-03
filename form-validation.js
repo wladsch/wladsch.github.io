@@ -23,16 +23,16 @@ $(document).ready(function(){
     $("#Abfallart").change(function(){
         $(this).find("option:selected").each(function(){
             var optionValue = $(this).attr("value");
-            console.log("I am live")
+            console.log("I am alive")
             //validation for changed value
             if(optionValue != ""){
             abfallArtSet = true
-            $("#Abfallart-error").hide();
+            //$("#Abfallart-error").hide();
             }
             else{
                 abfallArtSet = false
                 console.log("Abfallart nicht ausgewählt")
-                $("#Abfallart-error").show();
+                //$("#Abfallart-error").show();
             }
             if(optionValue == "andere Abfälle"){
                 //$(".box").not("." + optionValue).hide();
@@ -41,7 +41,7 @@ $(document).ready(function(){
             } else{
                 $(".weitere-abfaelle").hide();
                 andereabfaelle = false
-                $("#Andere-Art-von-Abfall-error").hide();
+                //$("#Andere-Art-von-Abfall-error").hide();
             }
         });
     }).change();
@@ -52,10 +52,10 @@ $(document).ready(function(){
 $("#Andere-Art-von-Abfall").on("input", function()
 {
 if( $(this).val().length === 0 && andereabfaelle) {
-   $("#Andere-Art-von-Abfall-error").show(); //add disable next page button
+   //$("#Andere-Art-von-Abfall-error").show(); //add disable next page button
 }
 else {
-    $("#Andere-Art-von-Abfall-error").hide(); //add disable next page button
+    //$("#Andere-Art-von-Abfall-error").hide(); //add disable next page button
 
 }
 });
@@ -68,11 +68,11 @@ $(document).ready(function(){
                         //validation for changed value
             if(optionValue != ""){
             abfallmengeSet = true
-            $("#Abfallmenge-error").hide();
+            //$("#Abfallmenge-error").hide();
             }
             else{
                 abfallmengeSet = false
-                $("#Abfallmenge-error").show();
+                //$("#Abfallmenge-error").show();
             }
             if(optionValue == "7 m³"){
                 //$(".box").not("." + optionValue).hide();
@@ -88,7 +88,7 @@ $(document).ready(function(){
                 //$(".box").not("." + optionValue).hide();
                 $("#Container-Variante-10kubik").show();
                 ContContainerVarianteSevenKubikShow = true
-                $("#Container-Variante-7kubik-error").hide();
+                //$("#Container-Variante-7kubik-error").hide();
             } else{
                 $("#Container-Variante-10kubik").hide();
                 ContContainerVarianteSevenKubikShow = false
@@ -104,11 +104,11 @@ $(document).ready(function(){
             //validation for changed value
             if(optionValue != ""){
             ContContainerVarianteSevenKubikSet = true
-            $("#Container-Variante-7kubik-error").hide();
+            //$("#Container-Variante-7kubik-error").hide();
             }
             else{
                 ContContainerVarianteSevenKubikSet = false
-                $("#Container-Variante-7kubik-error").show();
+                //$("#Container-Variante-7kubik-error").show();
             }
         });
     }).change();
@@ -120,11 +120,11 @@ $(document).ready(function(){
             //validation for changed value
             if(optionValue != ""){
             ContContainerVarianteTenKubikSet = true
-            $("#Container-Variante-10kubik-error").hide();
+            //$("#Container-Variante-10kubik-error").hide();
             }
             else{
                 ContContainerVarianteTenKubikSet = false
-                $("#Container-Variante-10kubik-error").show();
+                //$("#Container-Variante-10kubik-error").show();
             }
         });
     }).change();
