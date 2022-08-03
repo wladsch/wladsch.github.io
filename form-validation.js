@@ -14,7 +14,8 @@ var ContContainerVarianteTenKubikShow = false
 var ContContainerVarianteTenKubikSet = false
 
 
-
+var lieferdatumSet = false
+var abholdatumSet = false
 
 
 var abfallArtSet = false
@@ -23,7 +24,7 @@ $(document).ready(function(){
     $("#Abfallart").change(function(){
         $(this).find("option:selected").each(function(){
             var optionValue = $(this).attr("value");
-            console.log("I am alive")
+            console.log("I am 2x alive")
             //validation for changed value
             if(optionValue != ""){
             abfallArtSet = true
@@ -179,7 +180,9 @@ var requiredDone = false;
   });
 
   $('.button-link-to-tab-3').on('click', function (evt) {
-     console.log("Button Test");
+     console.log("Button Test3");
+     console.log(lieferdatumSet)
+     console.log(abholdatumSet)
      if(lieferdatumSet && abholdatumSet){
         $('.target-tab-link-3').triggerHandler('click');
         evt.preventDefault();
@@ -236,8 +239,6 @@ var requiredDone = false;
 
     var lieferdatumPicked = ""
     var todayDate = new Date().toISOString().slice(0, 10);
-    var lieferdatumSet = false
-    var abholdatumSet = false
     todayDate = todayDate.slice(0,4)+todayDate.slice(5,7)+todayDate.slice(8)
 
     $("#Lieferdatum").on("input", function() {
