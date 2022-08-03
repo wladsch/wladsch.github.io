@@ -123,6 +123,10 @@ $(document).ready(function(){
 var requiredDone = false;
   $('.button-link-to-tab-2').on('click', function (evt) {
      console.log("Button Test");
+     console.log(abfallArtSet)
+     console.log(abfallmengeSet)
+     console.log(ContContainerVarianteSevenKubikSet)
+     console.log(ContContainerVarianteTenKubikSet)
      if(abfallArtSet && abfallmengeSet && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet)){
         console.log("button not ready")  
     	evt.preventDefault();
