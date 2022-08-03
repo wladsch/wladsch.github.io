@@ -127,16 +127,17 @@ var requiredDone = false;
      console.log(abfallmengeSet)
      console.log(ContContainerVarianteSevenKubikSet)
      console.log(ContContainerVarianteTenKubikSet)
-     if(!(abfallArtSet && abfallmengeSet && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet))){
-        console.log("button not ready")  
-    	evt.preventDefault();
+     if(abfallArtSet && abfallmengeSet && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet)){
+        $('.target-tab-link-2').triggerHandler('click');
      }
   });
 
   $('.button-link-to-tab-3').on('click', function (evt) {
      console.log("Button Test");
-    $('.target-tab-link-3').triggerHandler('click');
-    evt.preventDefault();
+     if(lieferdatumSet && abholdatumSet){
+        $('.target-tab-link-3').triggerHandler('click');
+        evt.preventDefault();
+     }
   });
 
   $('.button-link-to-tab-4').on('click', function (evt) {
@@ -232,10 +233,3 @@ var requiredDone = false;
 
         }
     });
-
-    $('.button-link-to-tab-3').on('click', function (evt) {
-        if(!(lieferdatumSet && abholdatumSet)){
-           console.log("button not ready")  
-           evt.preventDefault();
-        }
-     });
