@@ -127,7 +127,7 @@ var requiredDone = false;
      console.log(abfallmengeSet)
      console.log(ContContainerVarianteSevenKubikSet)
      console.log(ContContainerVarianteTenKubikSet)
-     if(!(abfallArtSet && abfallmengeSet && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet)){
+     if(!(abfallArtSet && abfallmengeSet && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet))){
         console.log("button not ready")  
     	evt.preventDefault();
      }
