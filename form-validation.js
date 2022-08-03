@@ -44,7 +44,7 @@ $(document).ready(function(){
     $("#Abfallart").change(function(){
         $(this).find("option:selected").each(function(){
             var optionValue = $(this).attr("value");
-            console.log("I am 6x alive")
+            console.log("I am 7x alive")
             //validation for changed value
             if(optionValue != ""){
             abfallArtSet = true
