@@ -17,6 +17,7 @@ var ContContainerVarianteSevenKubikShow = false
 var ContContainerVarianteSevenKubikSet = false
 var ContContainerVarianteTenKubikShow = false
 var ContContainerVarianteTenKubikSet = false
+var ContainerNoVariantNeeded = false
 
 
 var lieferdatumSet = false
@@ -97,8 +98,11 @@ $(document).ready(function(){
                 ContContainerVarianteSevenKubikShow = true
                 $("#Container-Variante-10kubik").hide();
             } else{
+                if(!(optionValue == "10 m³")){
+                    ContainerNoVariantNeeded = true
+                }
                 $("#Container-Variante-7kubik").hide();
-		ContContainerVarianteSevenKubikShow = false
+		        ContContainerVarianteSevenKubikShow = false
 
             }
             if(optionValue == "10 m³"){
@@ -107,6 +111,9 @@ $(document).ready(function(){
                 ContContainerVarianteSevenKubikShow = true
                 //$("#Container-Variante-7kubik-error").hide();
             } else{
+                if(!(optionValue == "7 m³")){
+                    ContainerNoVariantNeeded = true
+                }
                 $("#Container-Variante-10kubik").hide();
                 ContContainerVarianteSevenKubikShow = false
             }
@@ -188,7 +195,7 @@ var requiredDone = false;
      console.log(abfallmengeSet)
      console.log(ContContainerVarianteSevenKubikSet)
      console.log(ContContainerVarianteTenKubikSet)
-     if(abfallArtSet && abfallmengeSet && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet)){
+     if(abfallArtSet && abfallmengeSet && (ContContainerVarianteSevenKubikSet || ContContainerVarianteTenKubikSet || ContainerNoVariantNeeded)){
         $('.target-tab-link-2').triggerHandler('click');
         $("#alle-pflichtfelder-ausfuellen-error").hide();
      }
@@ -339,7 +346,7 @@ else {
 });
 
 
-$("#email-Kontakt").on("input", function()
+$("#Email-Kontakt").on("input", function()
 {
 if( $(this).val().length === 0) {
     emailSet = false
