@@ -43,7 +43,7 @@ $(document).ready(function(){
     $("#Abfallart").change(function(){
         $(this).find("option:selected").each(function(){
             var optionValue = $(this).attr("value");
-            console.log("I am 4x alive")
+            console.log("I am 5x alive")
             //validation for changed value
             if(optionValue != ""){
             abfallArtSet = true
@@ -173,6 +173,7 @@ $(document).ready(function(){
                 }
                 if(optionValue == "Öffentliche Fläche (Bürgersteig, öffentlicher Parkplatz, ...)")
                 $("." + "sondernutzungserlaubnis-holder").show();
+                sondernutzungserlaubnisSet = false
                 abstellflaecheGewerblich = true
             } else{
                 $(".sondernutzungserlaubnis-holder").hide();
@@ -368,6 +369,7 @@ else {
 
     if(isEmail($(this).val())){
         emailSet = true
+        emailWrongFormat = false
     }
     else{
         emailWrongFormat = true
