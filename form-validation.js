@@ -406,6 +406,9 @@ $('.button-link-to-tab-4').on('click', function (evt) {
         $('.target-tab-link-4').triggerHandler('click');
         $("#alle-pflichtfelder-ausfuellen-error-3").hide();
         $("#email-falsches-format-error").hide();
+        $('html, body').animate({
+            scrollTop: $("#zahlung-paragraph-id").offset().top
+        }, 2000);
         evt.preventDefault();
     }
     else {
