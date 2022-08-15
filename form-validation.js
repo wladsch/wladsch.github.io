@@ -303,10 +303,12 @@ var requiredDone = false;
         else {
             if(lieferdatumPicked.slice(8)+lieferdatumPicked.slice(4,6)+lieferdatumPicked.slice(0,2) > $(this).val().slice(8)+$(this).val().slice(4,6)+$(this).val().slice(0,2)){
                 $("#div-abholdatum-vor-lieferdarum").show();
+		$("#alle-pflichtfelder-ausfuellen-error-2").hide();
                 abholdatumSet = false
             }
             else {
                $("#div-abholdatum-vor-lieferdarum").hide();
+		$("#alle-pflichtfelder-ausfuellen-error-2").hide();
                abholdatumSet = true
             }
 
