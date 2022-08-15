@@ -218,6 +218,7 @@ var requiredDone = false;
      console.log(lieferdatumSet)
      console.log(abholdatumSet)
      if(lieferdatumSet && abholdatumSet){
+        $("#alle-pflichtfelder-ausfuellen-error-2").hide();
         $('.target-tab-link-3').triggerHandler('click');
         evt.preventDefault();
      }
