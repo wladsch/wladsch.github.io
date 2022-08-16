@@ -37,7 +37,7 @@ var telefonSet = false
 var emailSet = false
 var emailWrongFormat = false
 var abstellortSet = false
-
+var divAbholdatumVorLieferdarum = false
 
 
 $(document).ready(function(){
@@ -218,12 +218,21 @@ var requiredDone = false;
      console.log(lieferdatumSet)
      console.log(abholdatumSet)
      if(lieferdatumSet && abholdatumSet){
-        $("#alle-pflichtfelder-ausfuellen-error-2").hide();
         $('.target-tab-link-3').triggerHandler('click');
+        $("#alle-pflichtfelder-ausfuellen-error-2").hide();
+        $("#div-abholdatum-vor-lieferdarum").hide();
         evt.preventDefault();
      }
      else {
-        $("#alle-pflichtfelder-ausfuellen-error-2").show();
+         if(divAbholdatumVorLieferdarum){
+            $("#alle-pflichtfelder-ausfuellen-error-2").hide();
+            $("#div-abholdatum-vor-lieferdarum").show();
+
+         }
+         else{
+            $("#alle-pflichtfelder-ausfuellen-error-2").show();
+            $("#div-abholdatum-vor-lieferdarum").hide();
+         }
     }
   });
 
@@ -303,13 +312,13 @@ var requiredDone = false;
         else {
             if(lieferdatumPicked.slice(8)+lieferdatumPicked.slice(4,6)+lieferdatumPicked.slice(0,2) > $(this).val().slice(8)+$(this).val().slice(4,6)+$(this).val().slice(0,2)){
                 $("#div-abholdatum-vor-lieferdarum").show();
-		$("#alle-pflichtfelder-ausfuellen-error-2").hide();
                 abholdatumSet = false
+                divAbholdatumVorLieferdarum = true
             }
             else {
                $("#div-abholdatum-vor-lieferdarum").hide();
-		$("#alle-pflichtfelder-ausfuellen-error-2").hide();
                abholdatumSet = true
+               divAbholdatumVorLieferdarum = false
             }
 
         }
@@ -408,9 +417,6 @@ $('.button-link-to-tab-4').on('click', function (evt) {
         $('.target-tab-link-4').triggerHandler('click');
         $("#alle-pflichtfelder-ausfuellen-error-3").hide();
         $("#email-falsches-format-error").hide();
-        $('html, body').animate({
-            scrollTop: $("#zahlung-paragraph-id").offset().top
-        }, 2000);
         evt.preventDefault();
     }
     else {
