@@ -12,6 +12,10 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
     return EmailRegex.test(email);
   }
 
+  function hasNumber(myString) {
+    return /\d/.test(myString);
+  }
+
 var abfallArtSet = false
 var andereabfaelle = false
 var andereAbfaelleSet = false
@@ -285,6 +289,7 @@ var requiredDone = false;
     $("#Lieferdatum").on("input", function() {
         if( $(this).val().length === 0 ) {
             $("#div-lieferdatum-vergangenheit").hide();
+            $("#div-lieferdatum-bearbeitungszeit").hide();
             lieferdatumPicked = ""
             lieferdatumSet = false
          }
@@ -293,11 +298,19 @@ var requiredDone = false;
              lieferdatumPicked = $(this).val()
              if(lieferdatumPicked.slice(8)+lieferdatumPicked.slice(4,6)+lieferdatumPicked.slice(0,2) < todayDate){
                 $("#div-lieferdatum-vergangenheit").show();
+                $("#div-lieferdatum-bearbeitungszeit").hide();
                 lieferdatumSet = false
              }
              else {
-                $("#div-lieferdatum-vergangenheit").hide();
-                lieferdatumSet = true
+                 if(lieferdatumPicked.slice(8)+lieferdatumPicked.slice(4,6)+lieferdatumPicked.slice(0,2) < todayDate+1){
+                    $("#div-lieferdatum-bearbeitungszeit").show();
+                    lieferdatumSet = false
+                 }
+                else{
+                    $("#div-lieferdatum-vergangenheit").hide();
+                    $("#div-lieferdatum-bearbeitungszeit").hide();
+                    lieferdatumSet = true
+                 }
              }
          }
      });
@@ -386,6 +399,22 @@ else {
 }
 });
 
+$("#Rechnungsadresse-Privat-Strasse").on("input", function()
+{
+if( $(this).val().length === 0) {
+    streetWrongFormat = false
+}
+else {
+
+    if(hasNumber($(this).val())){
+        streetWrongFormat = false
+    }
+    else{
+        streetWrongFormat = true
+    }
+}
+});
+
 $("#Sondernutzungserlaubnis-check").change(function() {
     if(this.checked) {
         sondernutzungserlaubnisSet = true
@@ -424,12 +453,22 @@ $('.button-link-to-tab-4').on('click', function (evt) {
             //show email error
             console.log("!emailWrongFormat")
             $("#alle-pflichtfelder-ausfuellen-error-3").hide();
+            $("#street-falsches-format-error").hide();
             $("#email-falsches-format-error").show();
         }
         else{
-            console.log("emailWrongFormat")
-            $("#alle-pflichtfelder-ausfuellen-error-3").show();
-            $("#email-falsches-format-error").hide();
+            if(streetWrongFormat){
+                $("#alle-pflichtfelder-ausfuellen-error-3").hide();
+                $("#street-falsches-format-error").show();
+                $("#email-falsches-format-error").hide();
+            }
+            else{
+                console.log("emailWrongFormat")
+                $("#alle-pflichtfelder-ausfuellen-error-3").show();
+                $("#email-falsches-format-error").hide();
+                $("#street-falsches-format-error").hide();
+
+            }
         }
     }
 
