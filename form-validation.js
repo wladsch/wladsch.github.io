@@ -650,6 +650,20 @@ $('.button-link-to-tab-4').on('click', function (evt) {
             }
             else {
                 console.log("emailWrongFormat")
+                console.log(emailSet)
+                console.log(telefonSet)
+                console.log(abstellortSet)
+                console.log(privatogewerblichSet)
+                console.log(abstellflaecheSet)
+                console.log(abstellflaechePrivat)
+                console.log(abstellflaecheSet)
+                console.log(abstellflaecheGewerblich)
+                console.log(sondernutzungserlaubnisSet)
+                console.log(zufahrt75tSet)
+                console.log(andererAbstellortSet)
+                console.log(lNachname)
+                console.log(lStreet)
+                console.log(lOrt)
                 $("#alle-pflichtfelder-ausfuellen-error-3").show();
                 $("#email-falsches-format-error").hide();
                 $("#street-falsches-format-error").hide();
