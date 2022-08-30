@@ -62,7 +62,7 @@ var streetFirmaSet = false
 //anderer Abstellort
 var lNachname = false
 var lStreet = false
-var lPlz = false
+var lPlz = true
 var lOrt = false
 
 var andererAbstellortSet = false
@@ -490,6 +490,7 @@ $("#Lieferadresse-Strasse").on("input", function () {
         lStreet = true
     }
 });
+
 $("#Lieferadresse-PLZ").on("input", function () {
     console.log(lPlz + " lPlz")
     if ($(this).val().length === 0) {
@@ -499,6 +500,7 @@ $("#Lieferadresse-PLZ").on("input", function () {
         lPlz = true
     }
 });
+
 $("#Lieferadresse-Ort").on("input", function () {
     if ($(this).val().length === 0) {
         lOrt = false
@@ -634,6 +636,7 @@ $('.button-link-to-tab-4').on('click', function (evt) {
                     $("#lstreet-falsches-format-error").hide();
                 }
                 else if(andererAbstellortSet){
+                    console.log(andererAbstellortSet + " test")
                     $("#alle-pflichtfelder-ausfuellen-error-3").hide();
                     $("#lstreet-falsches-format-error").show();
                     $("#email-falsches-format-error").hide();
