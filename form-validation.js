@@ -598,7 +598,7 @@ $('.button-link-to-tab-4').on('click', function (evt) {
     console.log(zufahrt75tSet)
     console.log(emailWrongFormat)
 
-    if (emailSet && telefonSet && abstellortSet && privatogewerblichSet && (abstellflaecheSet && abstellflaechePrivat || abstellflaecheSet && abstellflaecheGewerblich && sondernutzungserlaubnisSet) && zufahrt75tSet && ((streetPrivatSet && (pNachnameSet && streetPrivatSet && pPlz && pOrt)) || (streetFirmaSet && (fName && fNachname && fPlz && fOrt)) && (!andererAbstellortSet  || (andererAbstellortSet && lNachname && lStreet && lOrt && lPlz)))) {
+    if (emailSet && telefonSet && abstellortSet && privatogewerblichSet && (abstellflaecheSet && abstellflaechePrivat || abstellflaecheSet && abstellflaecheGewerblich && sondernutzungserlaubnisSet) && zufahrt75tSet && ((andererAbstellortSet && isRechnungsadressePrivat && streetPrivatSet && (pNachnameSet && streetPrivatSet && pPlz && pOrt)) || (!andererAbstellortSet && isRechnungsadresseFirma && streetFirmaSet && (fName && fNachname && fPlz && fOrt)) && (!andererAbstellortSet  || (andererAbstellortSet && lNachname && lStreet && lOrt && lPlz)))) {
         $('.target-tab-link-4').triggerHandler('click');
         $("#alle-pflichtfelder-ausfuellen-error-3").hide();
         $("#email-falsches-format-error").hide();
@@ -614,7 +614,7 @@ $('.button-link-to-tab-4').on('click', function (evt) {
         }
         else {
             if (streetWrongFormat) {
-                if(streetFirmaSet){
+                if(isRechnungsadresseFirma && !andererAbstellortSet){
                     $("#alle-pflichtfelder-ausfuellen-error-3").hide();
                     $("#fstreet-falsches-format-error").show();
                     $("#email-falsches-format-error").hide();
@@ -622,14 +622,14 @@ $('.button-link-to-tab-4').on('click', function (evt) {
                     $("#lstreet-falsches-format-error").hide();
 
                 }
-                else if(streetPrivatSet){
+                else if(isRechnungsadressePrivat && !andererAbstellortSet){
                     $("#alle-pflichtfelder-ausfuellen-error-3").hide();
                     $("#street-falsches-format-error").show();
                     $("#email-falsches-format-error").hide();
                     $("#fstreet-falsches-format-error").hide();
                     $("#lstreet-falsches-format-error").hide();
                 }
-                else{
+                else if(andererAbstellortSet){
                     $("#alle-pflichtfelder-ausfuellen-error-3").hide();
                     $("#lstreet-falsches-format-error").show();
                     $("#email-falsches-format-error").hide();
