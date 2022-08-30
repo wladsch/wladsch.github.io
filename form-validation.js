@@ -66,6 +66,7 @@ var lPlz = false
 var lOrt = false
 
 var andererAbstellortSet = false
+var streetWrongFormat = false
 
 $(document).ready(function () {
     $("#Abfallart").change(function () {
