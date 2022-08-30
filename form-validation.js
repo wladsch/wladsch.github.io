@@ -304,6 +304,7 @@ var requiredDone = false;
              else {
                  if(lieferdatumPicked.slice(8)+lieferdatumPicked.slice(4,6)+lieferdatumPicked.slice(0,2) < todayDate+1){
                     $("#div-lieferdatum-bearbeitungszeit").show();
+                    $("#div-lieferdatum-vergangenheit").hide();
                     lieferdatumSet = false
                  }
                 else{
@@ -403,14 +404,39 @@ $("#Rechnungsadresse-Privat-Strasse").on("input", function()
 {
 if( $(this).val().length === 0) {
     streetWrongFormat = false
+    console.log("streetprivatWrongFormat false 1")
 }
 else {
 
     if(hasNumber($(this).val())){
         streetWrongFormat = false
+        console.log("streetprivatWrongFormat false 2")
     }
     else{
         streetWrongFormat = true
+        console.log("streetprivatWrongFormat false 3")
+
+    }
+}
+});
+$("#Rechnungsadresse-Firma-Strasse-Ansprechpartner").on("input", function()
+{
+if( $(this).val().length === 0) {
+    streetWrongFormat = false
+    console.log("streetfirmaWrongFormat false 1")
+
+}
+else {
+
+    if(hasNumber($(this).val())){
+        streetWrongFormat = false
+        console.log("streetfirmaWrongFormat false 2")
+
+    }
+    else{
+        streetWrongFormat = true
+        console.log("streetfirmaWrongFormat false 3")
+
     }
 }
 });
@@ -458,6 +484,7 @@ $('.button-link-to-tab-4').on('click', function (evt) {
         }
         else{
             if(streetWrongFormat){
+                console.log("streetfirmaWrongFormat false 4")
                 $("#alle-pflichtfelder-ausfuellen-error-3").hide();
                 $("#street-falsches-format-error").show();
                 $("#email-falsches-format-error").hide();
