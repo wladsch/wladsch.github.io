@@ -491,6 +491,7 @@ $("#Lieferadresse-Strasse").on("input", function () {
     }
 });
 $("#Lieferadresse-PLZ").on("input", function () {
+    console.log(lPlz + " lPlz")
     if ($(this).val().length === 0) {
         lPlz = false
     }
