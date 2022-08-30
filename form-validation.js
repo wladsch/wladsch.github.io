@@ -589,19 +589,22 @@ $("#75t-erlaubt").change(function () {
 
 $('.button-link-to-tab-4').on('click', function (evt) {
     console.log("button 4")
-    console.log(emailSet)
-    console.log(telefonSet)
-    console.log(abstellortSet)
-    console.log(privatogewerblichSet)
-    console.log(abstellflaecheSet)
-    console.log(sondernutzungserlaubnisSet)
-    console.log(zufahrt75tSet)
-    console.log(emailWrongFormat)
+    console.log(andererAbstellortSet)
+    console.log(lNachname)
+    console.log(lStreet)
+    console.log(lOrt)
+    console.log(lPlz)
+
+
 
     if (emailSet && telefonSet && abstellortSet && privatogewerblichSet && (abstellflaecheSet && abstellflaechePrivat || abstellflaecheSet && abstellflaecheGewerblich && sondernutzungserlaubnisSet) && zufahrt75tSet && ((!andererAbstellortSet && isRechnungsadressePrivat && streetPrivatSet && (pNachnameSet && streetPrivatSet && pPlz && pOrt)) || (!andererAbstellortSet && isRechnungsadresseFirma && streetFirmaSet && (fName && fNachname && fPlz && fOrt)) && (!andererAbstellortSet  || (andererAbstellortSet && lNachname && lStreet && lOrt && lPlz)))) {
+
         $('.target-tab-link-4').triggerHandler('click');
         $("#alle-pflichtfelder-ausfuellen-error-3").hide();
         $("#email-falsches-format-error").hide();
+        $("#fstreet-falsches-format-error").hide();
+        $("#street-falsches-format-error").hide();
+        $("#lstreet-falsches-format-error").hide();
         evt.preventDefault();
     }
     else {
@@ -615,7 +618,6 @@ $('.button-link-to-tab-4').on('click', function (evt) {
         else {
             if (streetWrongFormat) {
                 if(isRechnungsadresseFirma && !andererAbstellortSet){
-                    console.log(isRechnungsadresseFirma + " " + !andererAbstellortSet + " tttttt")
                     $("#alle-pflichtfelder-ausfuellen-error-3").hide();
                     $("#fstreet-falsches-format-error").show();
                     $("#email-falsches-format-error").hide();
