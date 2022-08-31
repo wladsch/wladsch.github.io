@@ -600,8 +600,8 @@ $('.button-link-to-tab-4').on('click', function (evt) {
 
 
 
-    if (emailSet && telefonSet && abstellortSet && privatogewerblichSet && (abstellflaecheSet && abstellflaechePrivat || abstellflaecheSet && abstellflaecheGewerblich && sondernutzungserlaubnisSet) && zufahrt75tSet && (((!andererAbstellortSet && isRechnungsadressePrivat && streetPrivatSet && (pNachnameSet && streetPrivatSet && pPlz && pOrt)) || ((!andererAbstellortSet && isRechnungsadresseFirma && streetFirmaSet && (fName && fNachname && fPlz && fOrt))) && (!andererAbstellortSet  || (andererAbstellortSet && lNachname && lStreet && lOrt))))) {
-
+    if (emailSet && telefonSet && abstellortSet && privatogewerblichSet && (abstellflaecheSet && abstellflaechePrivat || abstellflaecheSet && abstellflaecheGewerblich && sondernutzungserlaubnisSet) && zufahrt75tSet) {
+//&(((!andererAbstellortSet && isRechnungsadressePrivat && streetPrivatSet && (pNachnameSet && streetPrivatSet && pPlz && pOrt)) || ((!andererAbstellortSet && isRechnungsadresseFirma && streetFirmaSet && (fName && fNachname && fPlz && fOrt))) && (!andererAbstellortSet  || (andererAbstellortSet && lNachname && lStreet && lOrt))))
         $('.target-tab-link-4').triggerHandler('click');
         $("#alle-pflichtfelder-ausfuellen-error-3").hide();
         $("#email-falsches-format-error").hide();
