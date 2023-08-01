@@ -131,6 +131,7 @@ $(document).ready(function () {
                     ContainerNoVariantNeeded = true
                 }
                 $("#Container-Variante-7kubik").hide();
+                $("#Container-Variante-3kubik").hide();
                 ContContainerVarianteSevenKubikShow = false
 
             }
@@ -144,6 +145,17 @@ $(document).ready(function () {
                     ContainerNoVariantNeeded = true
                 }
                 $("#Container-Variante-10kubik").hide();
+                $("#Container-Variante-3kubik").hide();
+                ContContainerVarianteSevenKubikShow = false
+            }
+            		
+            if(optionValue == "3 m³" || optionValue == "5 m³"){
+                //$(".box").not("." + optionValue).hide();
+                $("#Container-Variante-3kubik").show();
+                ContContainerVarianteSevenKubikShow = true
+            } else{
+                $("#Container-Variante-10kubik").hide();
+                $("#Container-Variante-7kubik").hide();
                 ContContainerVarianteSevenKubikShow = false
             }
         });
@@ -179,6 +191,18 @@ $(document).ready(function () {
                 ContContainerVarianteTenKubikSet = false
                 //$("#Container-Variante-10kubik-error").show();
             }
+        });
+    }).change();
+});
+	$(document).ready(function(){
+    $("#Container-Variante-3kubik").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            //validation for changed value
+            if(optionValue != ""){
+            ContContainerVarianteTenKubikSet = true
+            }
+            else{ContContainerVarianteTenKubikSet = false}
         });
     }).change();
 });
